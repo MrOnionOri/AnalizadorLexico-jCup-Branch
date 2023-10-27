@@ -1,0 +1,338 @@
+package codigo;
+
+import java_cup.runtime.Symbol;
+
+parser code
+{:
+    private Symbol s;
+    
+    public void syntax_error(Symbol s){
+        this.s = s;
+    }
+
+    public Symbol getS(){
+        return this.s;
+}
+:};
+
+non terminal INICIO, Import, ImportUserLib, OperadoresMatematicos, MainFunc, Codigo, DeclaracionVar, TipoDato, DeclaracionesVar,
+OperadoresVar, OperadoresRelacionales, Imports, DeclaracionMultipleVars, VariableList,
+TipoDatoFuncion, DeclaracionFuncion, DeclaracionFunciones, CallFuncNone,
+AllCodeBlock, CallFuncDataType, Params, Funciones, VarParser, ProteccionDeDatos, Directivas,
+ArrayListDef, HashMapListDef, ArchListDef, EncodiginSystemsDef, EncriptionDef,
+UnlogicalVars, IfStatement, Condicion, Condiciones, NumOrID, WhileStatement, ForStatement, DoWhileStatement, SwitchStatement,
+GrammarSwitch, NumOrIDOrString, DataAssing, SetArch, SetEncription, SetEncoding, SetRegionConfig,
+ProgramConfiguration, DataParserAssing, RegionConfig,SetIs,BooleanSelector,SetUnbox,SetBox,
+SetIn,SetOut,SetRefValue,SetRefType,SetMakeRef,SetFunction,defineConfigMain,
+SetArglist,SetUUID,SetTime,SetDate,SetPragma,SetUnboxAny, defineMultipleMains,
+defineConfigMainContent, SetFile, ElifDef, SetIfDef, SetElif, SetError, SetInclude, SetHasOccp,
+defineConfigMains, SetAsciiEnco,FuncOrMain, ListArray, InitListArray,
+initNoVar,OperadoresFor,DeclaracionAsignacionVar, ClassDef, ClassCodeBlock, ClassFunctions, ClassFunction,
+ClassConstructorClass, ClassParametros, ClassParametro, NumOrIDOrStringOrEmpty, idFileFuncs,
+idFile, idFileParam, instanciaFunciones, SetDataToClassVar,ClassDeclarations,
+FunctionDeclare, Interface, EdibleFunc, EventDef, OperatorDef, ThisDef, DllImports, DllImport
+;
+
+terminal MAS ,MENOS, ESPACIO , NUMERO, MAIN,IDENTIFICADOR ,POR ,DIV ,MOD  ,INCREMENTO ,DECREMENTO ,MASIGUAL ,MENOSIGUAL ,PORIGUAL ,DIVIGUAL ,MODIGUAL ,SPLIT ,REPLACE ,SUBSTRING ,INDEXOF ,LASTINDEXOF ,CONTAINS ,STARTSWITH ,ENDSWITH ,TRIM ,FILE ,FILEMODE ,FILEACCESS ,FILESHARE ,FILEOPTIONS ,FILEATTRIBUTES ,VAR_PARSE_SINGLE ,VAR_PARSE_DOUBLE ,VAR_PARSE_INT ,VAR_PARSE_INT16 ,VAR_PARSE_INT32  ,VAR_PARSE_INT64 ,VAR_PARSE_UINT ,VAR_PARSE_UINT16 ,VAR_PARSE_UINT32 ,VAR_PARSE_UINT64 ,VAR_PARSE_DECIMAL ,VAR_PARSE_BOOLEAN ,VAR_PARSE_CHAR ,VAR_PARSE_STRING ,VAR_PARSE_BYTE ,VAR_PARSE_SBYTE ,VAR_PARSE_OBJECT ,VAR_PARSE_FLOAT ,LAMBDA ,BOOL ,BYTE ,CHAR ,DECIMAL ,DOUBLE ,FLOAT ,INT ,LONG ,OBJECT ,SBYTE ,SHORT ,STRING ,UINT ,ULONG ,USHORT ,LET ,PUBLIC ,PRIVATE ,PROTECTED ,INTERNAL ,STATIC ,VIRTUAL ,SEALED ,OVERRIDE ,ABSTRACT ,READONLY ,VOID ,LOCAL ,IF  ,SWITCH ,CASE ,DEFAULT ,TYPEDEF ,UNION ,AUTO ,REGISTER ,EXTERN ,CONST ,VOLATILE ,IMPORT ,CALL ,CALLBACK ,WHILE ,DO ,FOR ,FOREACH ,TRUE ,FALSE ,BREAK ,CONTINUE ,GOTO ,PASS ,TRY ,CATCH ,FINALLY ,THROW ,IF_NOT_EXISTS ,FASTCALL ,USING ,NAMESPACE ,CLASS ,STRUCT ,ENUM ,INTERFACE ,DELEGATE ,EVENT ,OPERATOR ,SIZEOF ,TYPEOF ,NEW ,THIS ,BASE ,ASM ,AS ,TRY_CAST ,REINTERPRET_CAST ,DLLIMPORT ,DLLEXPORT ,DYNAMIC_CAST ,INSTANCEOF ,ASYNC ,AWAIT ,REGION ,ENDREGION  ,LINE ,COLUMN ,FUNCTION ,DATE ,TIME ,DATETIME ,UUID ,ARGLIST ,MAKEREF ,REFTYPE ,REFVALUE ,OUT ,IN ,INOUT ,BOX ,UNBOX ,UNBOXANY ,IS ,DEFINE ,UNDEFINE ,IFDEF ,IFNDEF ,ELIF ,ELSE ,ENDIF ,ERROR ,WARNING ,PRAGMA ,INCLUDE ,INCLUDE_NEXT ,HAS_INCLUDE ,HAS_INCLUDE_NEXT ,HAS_OCPP_ATTRIBUTE ,UNSIGNED ,ARRAY ,ARRAYLIST ,LIST ,DICTIONARY ,QUEUE ,STACK ,HASHSET ,HASHMAP ,HASHLIST ,HASHQUEUE ,HASHSTACK ,HASHDICTIONARY ,BYTEARRAY ,SBYTEARRAY ,CHARARRAY ,SHORTARRAY ,INTARRAY ,LONGARRAY ,FLOATARRAY ,DOUBLEARRAY ,BOOLARRAY ,STRINGARRAY ,OBJECTARRAY ,UINTARRAY ,ULONGARRAY ,USHORTARRAY ,DECIMALARRAY ,VARARRAY ,INT16ARRAY ,INT32ARRAY ,INT64ARRAY ,UINT16ARRAY ,UINT32ARRAY ,UINT64ARRAY ,ARCH ,ARCH32 ,ARCH64 ,ARCH128 ,ARCHARM ,ARCHARM32 ,ARCHARM64 ,ARCHM1 ,ARCHM2 ,ASCII ,UTF8 ,UTF16 ,UTF32 ,UTF7 ,UTF1 ,AES ,AES128 ,AES192 ,AES256 ,AES512 ,RETURN ,THREAD ,THREADPOOL ,THREADSTART ,THREADABORT ,THREADABORTEXCEPTION ,THREADSTATE ,THREADPRIORITY ,THREADPRIORITYLEVEL ,THREADEXCEPTION ,THREADEXCEPTIONHANDLER ,THREADEXCEPTIONMODE ,THREADEXCEPTIONSOURCE ,NONE ,NULL ,ASIGNACION ,ASIGNACION_EXPLICITA ,COMILLAS ,FLECHA ,COMA ,IGUAL_IGUAL ,DIFERENTE ,MAYOR ,MENOR ,MAYOR_IGUAL ,MENOR_IGUAL ,AND ,OR ,NOT ,NOT_NOT ,INTERROGACION ,NUMERAL ,ARROBA ,DUMP ,KRYPTOL ,ZEPHYRSCRIPT ,XYLOCODE ,QUARKY ,SYNTHETIX ,TESSERACT ,NIMBIC ,AXIOMATE ,JOLTSCRIPT ,NEXU ,INTEGROSCRIPT ,NOVALISP ,ZENITHCODE ,OSMOSIS ,ENVISION ,VELOCISCRIPT ,HELIXLANG ,FUSIONX ,OMNICODE ,VORTEXSCRIPT ,LUMINA ,NEBULACODE ,SYNAPSEX ,QUARTZSCRIPT ,INFERNO ,SPECTRASCRIPT ,FLUXLANG ,AURUMSCRIPT ,CHROMALANG ,POLARISCODE ,CYPHERX ,ALGOMIND ,STRATACODE ,QUANTUMLANG ,EXOSCRIPT ,PARENTESIS_IZQ ,PARENTESIS_DER ,CORCHETE_IZQ ,CORCHETE_DER ,LLAVE_IZQ ,LLAVE_DER ,PUNTO ,PUNTO_COMA ,DOS_PUNTOS,
+_REGION, _ENDREGION,_PRAGMA,_LINE,_COLUMN,_FILE,_FUNCTION,_DATE,_TIME,_DATETIME,_UUID,_ARGLIST,_MAKEREF,_REFTYPE,_REFVALUE,_OUT,_IN,_INOUT,_BOX,_UNBOX,_UNBOXANY,_IS,_DEFINE,_UNDEFINE,_IFDEF,_ELIF, PRINT;
+start with INICIO;
+
+EdibleFunc::= PRINT;
+
+FunctionDeclare::= EdibleFunc PARENTESIS_DER PARENTESIS_IZQ PUNTO_COMA| EdibleFunc PARENTESIS_IZQ COMILLAS COMILLAS PARENTESIS_DER PUNTO_COMA | EdibleFunc PARENTESIS_IZQ COMILLAS IDENTIFICADOR COMILLAS PARENTESIS_DER PUNTO_COMA | EdibleFunc PARENTESIS_IZQ IDENTIFICADOR PARENTESIS_DER PUNTO_COMA;
+
+initNoVar::= PARENTESIS_IZQ PARENTESIS_DER;
+
+InitListArray::= ListArray ASIGNACION NEW ListArray initNoVar PUNTO_COMA| ListArray PUNTO_COMA;
+
+ListArray::= ArrayListDef MENOR TipoDato MAYOR IDENTIFICADOR;
+
+SetUnboxAny::= UNBOXANY DOS_PUNTOS BooleanSelector PUNTO_COMA;
+
+SetFunction::= FUNCTION DOS_PUNTOS IDENTIFICADOR PUNTO_COMA;
+
+SetPragma::= PRAGMA DOS_PUNTOS IDENTIFICADOR PUNTO_COMA;
+
+SetIs ::= IS DOS_PUNTOS BooleanSelector PUNTO_COMA;
+
+BooleanSelector::= TRUE | FALSE;
+
+SetUnbox::= UNBOX DOS_PUNTOS BooleanSelector PUNTO_COMA;
+
+SetBox ::= BOX DOS_PUNTOS BooleanSelector PUNTO_COMA;
+
+SetIn ::= IN DOS_PUNTOS IDENTIFICADOR PUNTO_COMA;
+
+SetOut::= OUT DOS_PUNTOS IDENTIFICADOR PUNTO_COMA;
+
+SetRefValue::= REFVALUE DOS_PUNTOS IDENTIFICADOR PUNTO_COMA;
+
+SetRefType::= REFTYPE DOS_PUNTOS IDENTIFICADOR PUNTO_COMA;
+
+SetMakeRef::= MAKEREF DOS_PUNTOS IDENTIFICADOR PUNTO_COMA;
+
+SetArglist::= ARGLIST DOS_PUNTOS IDENTIFICADOR PUNTO_COMA;
+
+SetUUID::= UUID DOS_PUNTOS IDENTIFICADOR PUNTO_COMA | _UUID DOS_PUNTOS IDENTIFICADOR PUNTO_COMA ;
+
+SetTime::= TIME DOS_PUNTOS IDENTIFICADOR PUNTO_COMA;
+
+SetDate::= DATE DOS_PUNTOS IDENTIFICADOR PUNTO_COMA;
+
+SetArch::=ARCH DOS_PUNTOS ArchListDef PUNTO_COMA;
+
+SetFile::= FILE DOS_PUNTOS IDENTIFICADOR PUNTO_COMA;
+
+SetEncription::= AES DOS_PUNTOS EncriptionDef PUNTO_COMA;
+
+RegionConfig::= RegionConfig SetArch
+                |SetArch
+                | RegionConfig SetEncription
+                | SetEncription
+                | RegionConfig SetEncoding
+                | SetEncoding
+                | RegionConfig SetFile
+                | SetFile
+                | RegionConfig SetTime
+                | SetTime
+                | RegionConfig SetDate
+                | SetDate
+                | RegionConfig SetUUID
+                | SetUUID
+                | RegionConfig SetArglist
+                | SetArglist
+                | RegionConfig SetMakeRef
+                | SetMakeRef
+                | RegionConfig SetRefType
+                | SetRefType
+                | RegionConfig SetRefValue
+                | SetRefValue
+                | RegionConfig SetOut
+                | SetOut
+                | RegionConfig SetIn
+                | SetIn
+                | RegionConfig SetBox
+                | SetBox
+                | RegionConfig SetUnbox
+                | SetUnbox
+                | RegionConfig SetIs
+                | SetIs
+                |RegionConfig SetFunction
+                | SetFunction
+                | RegionConfig SetUnboxAny
+                | SetUnboxAny
+                ;
+
+
+
+SetRegionConfig::= REGION LLAVE_IZQ RegionConfig LLAVE_DER ENDREGION PUNTO_COMA;
+
+DataParserAssing ::= IDENTIFICADOR ASIGNACION VarParser PARENTESIS_IZQ IDENTIFICADOR PARENTESIS_DER PUNTO_COMA;
+
+DataAssing ::= IDENTIFICADOR ASIGNACION NumOrIDOrString PUNTO_COMA;
+
+NumOrID::= NUMERO | IDENTIFICADOR;
+
+NumOrIDOrString::= NUMERO | IDENTIFICADOR | COMILLAS IDENTIFICADOR COMILLAS;
+
+NumOrIDOrStringOrEmpty::= NUMERO | IDENTIFICADOR | COMILLAS IDENTIFICADOR COMILLAS | NONE | NULL | COMILLAS COMILLAS;
+
+Condicion::= NumOrID OperadoresRelacionales NumOrID | IDENTIFICADOR;
+
+Condiciones::= Condiciones AND Condicion | Condicion OR Condicion | Condicion;
+
+GrammarSwitch::= CASE NumOrIDOrString DOS_PUNTOS Codigo BREAK PUNTO_COMA | DEFAULT DOS_PUNTOS Codigo BREAK PUNTO_COMA;
+
+SwitchStatement::= SWITCH PARENTESIS_IZQ IDENTIFICADOR PARENTESIS_DER LLAVE_IZQ GrammarSwitch LLAVE_DER;
+
+DoWhileStatement::= DO LLAVE_IZQ Codigo LLAVE_DER WHILE PARENTESIS_IZQ Condiciones PARENTESIS_DER PUNTO_COMA;
+
+DeclaracionAsignacionVar::= IDENTIFICADOR | IDENTIFICADOR FLECHA TipoDato ASIGNACION NumOrID;
+
+ForStatement::= FOR PARENTESIS_IZQ DeclaracionAsignacionVar PUNTO_COMA Condiciones PUNTO_COMA IDENTIFICADOR OperadoresFor PARENTESIS_DER LLAVE_IZQ Codigo LLAVE_DER;
+
+WhileStatement::= WHILE PARENTESIS_IZQ Condiciones PARENTESIS_DER LLAVE_IZQ Codigo LLAVE_DER;
+
+IfStatement::= IF PARENTESIS_IZQ Condiciones PARENTESIS_DER LLAVE_IZQ Codigo LLAVE_DER;
+
+UnlogicalVars::=KRYPTOL|ZEPHYRSCRIPT|XYLOCODE|QUARKY|SYNTHETIX|TESSERACT|NIMBIC|AXIOMATE|JOLTSCRIPT|NEXU|INTEGROSCRIPT|NOVALISP|ZENITHCODE|OSMOSIS|ENVISION|VELOCISCRIPT|HELIXLANG|FUSIONX|OMNICODE|VORTEXSCRIPT|LUMINA|NEBULACODE|SYNAPSEX|QUARTZSCRIPT|INFERNO|SPECTRASCRIPT|FLUXLANG|AURUMSCRIPT|CHROMALANG|POLARISCODE|CYPHERX|ALGOMIND|STRATACODE|QUANTUMLANG|EXOSCRIPT;
+
+EncriptionDef::= AES|AES128|AES192|AES256|AES512;
+
+EncodiginSystemsDef::=UTF8|UTF16|UTF32|UTF7|UTF1;
+
+ArchListDef::=ARCH32|ARCH64|ARCH128|ARCHARM|ARCHARM32|ARCHARM64|ARCHM1|ARCHM2;
+
+ArrayListDef::= ARRAYLIST|LIST|DICTIONARY|QUEUE|STACK|BYTEARRAY|SBYTEARRAY|CHARARRAY|SHORTARRAY|INTARRAY|LONGARRAY|FLOATARRAY|DOUBLEARRAY|BOOLARRAY|STRINGARRAY|OBJECTARRAY|UINTARRAY|ULONGARRAY|USHORTARRAY|DECIMALARRAY|VARARRAY|INT16ARRAY|INT32ARRAY|INT64ARRAY|UINT16ARRAY|UINT32ARRAY|UINT64ARRAY;
+
+HashMapListDef::= HASHSET|HASHMAP|HASHLIST|HASHQUEUE|HASHSTACK|HASHDICTIONARY;
+
+ProteccionDeDatos::= PUBLIC|PRIVATE|PROTECTED|INTERNAL|STATIC|VIRTUAL|SEALED|OVERRIDE|ABSTRACT|READONLY;
+
+VarParser::= VAR_PARSE_BOOLEAN|VAR_PARSE_BYTE|VAR_PARSE_CHAR|VAR_PARSE_DECIMAL|VAR_PARSE_DOUBLE|VAR_PARSE_FLOAT|VAR_PARSE_INT|VAR_PARSE_INT16|VAR_PARSE_INT32|VAR_PARSE_INT64|VAR_PARSE_OBJECT|VAR_PARSE_SBYTE|VAR_PARSE_STRING|VAR_PARSE_UINT|VAR_PARSE_UINT16|VAR_PARSE_UINT32|VAR_PARSE_UINT64;
+
+Funciones::= SPLIT|REPLACE|SUBSTRING|INDEXOF|LASTINDEXOF|CONTAINS|STARTSWITH|ENDSWITH|TRIM|SIZEOF|TYPEOF;
+
+Directivas::= _REGION|REGION|_ENDREGION|ENDREGION|_PRAGMA|PRAGMA|_LINE|LINE|_COLUMN|COLUMN|_FILE|FILE|_FUNCTION|FUNCTION|_DATE|DATE|_TIME|TIME|_DATETIME|DATETIME|_UUID|UUID|_ARGLIST|ARGLIST|_MAKEREF|MAKEREF|_REFTYPE|REFTYPE|_REFVALUE|REFVALUE|_OUT|OUT|_IN|IN|_INOUT|INOUT|_BOX|BOX|_UNBOX|UNBOX|_UNBOXANY|UNBOXANY|_IS|IS|_DEFINE|DEFINE|_UNDEFINE|UNDEFINE|_IFDEF|_IFDEF|IFNDEF|_ELIF|ELSE|ENDIF|LINE|ERROR|PRAGMA|WARNING|INCLUDE|INCLUDE_NEXT|HAS_INCLUDE|HAS_INCLUDE_NEXT|HAS_OCPP_ATTRIBUTE|UNSIGNED;
+
+OperadoresMatematicos::=MAS|MOD|MENOS|POR|DIV;
+
+OperadoresRelacionales::= IGUAL_IGUAL|DIFERENTE|MAYOR|MENOR|MAYOR_IGUAL|MENOR_IGUAL;
+
+OperadoresFor::= DECREMENTO|INCREMENTO;
+
+idFileFuncs::= FILEMODE | FILEACCESS | FILESHARE | FILEOPTIONS | FILEATTRIBUTES;
+
+idFile::= IDENTIFICADOR FLECHA FILE PUNTO_COMA | IDENTIFICADOR FLECHA FILE ASIGNACION NEW FILE PARENTESIS_IZQ PARENTESIS_DER PUNTO_COMA;
+
+idFileParam::= IDENTIFICADOR PUNTO idFileFuncs PUNTO_COMA;
+
+instanciaFunciones::= IDENTIFICADOR PUNTO Funciones PARENTESIS_IZQ Params PARENTESIS_DER PUNTO_COMA;
+
+OperadoresVar::=DECREMENTO|INCREMENTO|DIVIGUAL|MODIGUAL|MASIGUAL|MENOSIGUAL|PORIGUAL;
+
+TipoDato::= LAMBDA|BOOL|BYTE|CHAR|DECIMAL|DOUBLE|FLOAT|INT|LONG|OBJECT|SBYTE|SHORT|STRING|UINT|ULONG|USHORT|LET;
+
+TipoDatoFuncion::= LAMBDA|BOOL|BYTE|CHAR|DECIMAL|DOUBLE|FLOAT|INT|LONG|OBJECT|SBYTE|SHORT|STRING|UINT|ULONG|USHORT|LET|VOID|NONE;
+
+DeclaracionVar::= IDENTIFICADOR FLECHA TipoDato PUNTO_COMA | IDENTIFICADOR FLECHA TipoDato CORCHETE_IZQ NUMERO CORCHETE_DER PUNTO_COMA;
+
+DeclaracionFuncion::= PUNTO IDENTIFICADOR TipoDatoFuncion DOS_PUNTOS LLAVE_IZQ Codigo LLAVE_DER | PUNTO IDENTIFICADOR TipoDatoFuncion DOS_PUNTOS LLAVE_IZQ LLAVE_DER;
+
+DeclaracionFunciones::= DeclaracionFunciones DeclaracionFuncion | DeclaracionFuncion;
+
+ImportUserLib::= IDENTIFICADOR PUNTO_COMA | COMILLAS IDENTIFICADOR COMILLAS PUNTO_COMA;
+
+Import::= IMPORT ImportUserLib {: System.out.println("Import"); :};
+
+CallFuncNone ::= CALL PUNTO IDENTIFICADOR PUNTO_COMA;
+
+Params::= IDENTIFICADOR {: System.out.println("params called"); :} | Params COMA IDENTIFICADOR{: System.out.println("params called"); :};
+
+CallFuncDataType::= CALLBACK FLECHA IDENTIFICADOR PUNTO IDENTIFICADOR PARENTESIS_IZQ Params PARENTESIS_DER PUNTO_COMA;
+
+Imports ::= Imports Import | Import;
+
+EventDef::= EVENT IDENTIFICADOR PUNTO_COMA;
+
+OperatorDef::= OPERATOR IDENTIFICADOR PARENTESIS_IZQ Params PARENTESIS_DER PUNTO_COMA;
+
+SetDataToClassVar ::= IDENTIFICADOR PUNTO IDENTIFICADOR ASIGNACION NumOrIDOrStringOrEmpty PUNTO_COMA;
+
+ThisDef::= THIS PUNTO IDENTIFICADOR PUNTO_COMA;
+
+DllImport::= CORCHETE_IZQ DLLIMPORT ASIGNACION COMILLAS IDENTIFICADOR COMILLAS CORCHETE_DER;
+
+DllImports::= DllImports DllImport | DllImport;
+
+Codigo::=   Codigo DeclaracionVar
+            | DeclaracionVar
+            | Codigo CallFuncNone
+            | CallFuncNone
+            | Codigo CallFuncDataType
+            | CallFuncDataType
+            | Codigo IfStatement
+            | IfStatement
+            | Codigo WhileStatement
+            | WhileStatement
+            | Codigo ForStatement
+            | ForStatement
+            | Codigo DoWhileStatement
+            | DoWhileStatement
+            | Codigo SwitchStatement
+            | SwitchStatement
+            | Codigo DataAssing
+            | DataAssing
+            | Codigo DataParserAssing
+            | DataParserAssing
+            | Codigo InitListArray
+            | InitListArray
+            | Codigo idFile
+            | idFile
+            | Codigo idFileParam
+            | idFileParam
+            | Codigo instanciaFunciones
+            | instanciaFunciones
+            | Codigo SetDataToClassVar
+            | SetDataToClassVar
+            | Codigo EventDef
+            | EventDef
+            | Codigo ThisDef
+            | ThisDef
+            | Codigo OperatorDef
+            | OperatorDef
+            | Codigo DllImport
+;
+
+ElifDef::= ARCH | NONE;
+
+SetIfDef::= IFDEF DOS_PUNTOS ARCH IGUAL_IGUAL ArchListDef PUNTO_COMA | IFNDEF DOS_PUNTOS ARCH IGUAL_IGUAL ArchListDef PUNTO_COMA | _IFDEF DOS_PUNTOS ARCH IGUAL_IGUAL ArchListDef PUNTO_COMA; 
+
+SetElif::= ELIF DOS_PUNTOS ElifDef PUNTO_COMA;
+
+SetError::=  ERROR DOS_PUNTOS IDENTIFICADOR PUNTO_COMA;
+
+SetInclude::= INCLUDE DOS_PUNTOS IDENTIFICADOR PUNTO_COMA;
+
+SetHasOccp::= HAS_OCPP_ATTRIBUTE DOS_PUNTOS BooleanSelector PUNTO_COMA;
+
+defineConfigMainContent::=  defineConfigMainContent SetIfDef
+                            | SetIfDef
+                            | defineConfigMainContent SetElif
+                            | SetElif
+                            | defineConfigMainContent SetError
+                            | SetError
+                            | defineConfigMainContent SetInclude
+                            | SetInclude
+                            | defineConfigMainContent SetHasOccp
+                            | SetHasOccp
+                            | defineConfigMainContent SetAsciiEnco
+                            | SetAsciiEnco
+                            ;
+
+Interface::= PUNTO INTERFACE IDENTIFICADOR LLAVE_IZQ LLAVE_DER;
+
+enumVar::= ENUM IDENTIFICADOR LLAVE_IZQ LLAVE_DER PUNTO_COMA;
+
+defineConfigMain::= DEFINE LLAVE_IZQ defineConfigMainContent LLAVE_DER PUNTO_COMA;
+
+defineConfigMains::= defineConfigMains defineConfigMain | defineConfigMain;
+
+SetAsciiEnco::= ASCII DOS_PUNTOS EncodiginSystemsDef PUNTO_COMA;
+
+VariableList::= VariableList COMA IDENTIFICADOR | IDENTIFICADOR {: System.out.println("Var list created"); :};
+
+ClassParametro::= ProteccionDeDatos DeclaracionVar| ProteccionDeDatos IDENTIFICADOR FLECHA TipoDato ASIGNACION NumOrIDOrStringOrEmpty | ProteccionDeDatos InitListArray | ProteccionDeDatos ListArray;
+
+ClassParametros::= ClassParametros ClassParametro | ClassParametro;
+
+ClassConstructorClass::= ProteccionDeDatos PUNTO IDENTIFICADOR PARENTESIS_IZQ VariableList PARENTESIS_DER LLAVE_IZQ Codigo LLAVE_DER;
+
+ClassFunction::= ProteccionDeDatos DeclaracionFuncion;
+
+ClassFunctions::= ClassFunctions ClassFunction | ClassFunction;
+
+ClassCodeBlock::= ClassParametros | ClassConstructorClass| ClassFunctions| ClassParametros ClassConstructorClass| ClassParametros ClassFunctions| ClassConstructorClass ClassFunctions| ClassParametros ClassConstructorClass ClassFunctions;
+
+ClassDef::= PUNTO CLASS IDENTIFICADOR LLAVE_IZQ LLAVE_DER PUNTO_COMA | PUNTO CLASS IDENTIFICADOR LLAVE_IZQ ClassCodeBlock LLAVE_DER PUNTO_COMA ;
+
+ClassDeclarations::= ClassDeclarations ClassDef | ClassDef;
+
+MainFunc::= PUNTO MAIN DOS_PUNTOS LLAVE_IZQ Codigo LLAVE_DER {: System.out.println("Estructura main creada papu!"); :};
+
+FuncOrMain::= MainFunc DeclaracionFunciones | DeclaracionFunciones MainFunc;
+
+INICIO::=     MainFunc
+            | ClassDeclarations MainFunc
+            | MainFunc DeclaracionFunciones
+            | ClassDeclarations MainFunc DeclaracionFunciones
+            | Imports MainFunc 
+            | Imports ClassDeclarations MainFunc 
+            | Imports defineConfigMains MainFunc 
+            | Imports ClassDeclarations defineConfigMains MainFunc
+            | Imports MainFunc DeclaracionFunciones
+            | Imports ClassDeclarations MainFunc DeclaracionFunciones
+            | Imports SetRegionConfig MainFunc DeclaracionFunciones 
+            | Imports SetRegionConfig ClassDeclarations MainFunc DeclaracionFunciones
+            | Imports SetRegionConfig defineConfigMains  MainFunc DeclaracionFunciones
+            | Imports SetRegionConfig defineConfigMains ClassDeclarations MainFunc DeclaracionFunciones;

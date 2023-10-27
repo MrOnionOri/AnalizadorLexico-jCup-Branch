@@ -1,0 +1,21 @@
+<main>
+	<var>
+		<string id="valor1">
+	</var>
+	<proc>
+		<call GET.ByName:"hola">
+	</proc>
+</main>
+
+<function id="hola">
+	<values>
+		<string id="numero1">
+		<string id="numero2">
+	</values>
+	<proc>
+		<if ref.ByID="numero1" (>) ref.ByID="numero2">
+			<return>ref.ByID="numero1"</return>
+		<else>
+			<return>ref.ByID="numero2"</return>
+	</proc>
+</function>

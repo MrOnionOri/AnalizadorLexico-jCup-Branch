@@ -1,0 +1,44 @@
+import hola;
+
+.main :{
+    //call .myFunc;
+    (num1, num2)->num;
+    num1=>getUserInput("Digite un numero");
+    num2=>getUserInput("Digite un numero");
+    callback->var .myFunc(num1, num2);
+}
+
+
+.funcDataPrint none:{
+    print("hi");
+    nombre->string;
+    print(nombre);
+}
+
+.procedural While:{
+    num1++;
+}
+
+.funcWhile ? : num1->int, contador->int{
+    while->(call .proceduralWhile, num1 < contador);
+    return num1;
+}
+
+.funcSwitch string : num1->string{
+    switch(num1){
+        case "string":
+            return (num1);
+            break;;
+        case "hola":
+            return (num2);
+            break;;
+    }
+}
+
+.myIf bool : num1->int, num2->int{
+    if num1 > num2{
+        return true;
+    }else{
+        return false;
+    }
+}

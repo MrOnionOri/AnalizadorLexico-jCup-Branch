@@ -1,0 +1,19 @@
+import hola; //ya
+
+.main :{
+    hola->string; //ya
+    hola1->string;
+    call .proceduralWhile;
+    hola3->string;
+    List<int> lista; //falta
+    callback->var .myFunc(num1, num2);
+    if (num1 > num2) {
+        call .proceduralWhile;
+    }
+    switch(hola){
+        case "hola":
+            call .proceduralWhile;
+            break;
+    }
+    call .funcionSecundaria;
+}

@@ -1,0 +1,126 @@
+import hola;
+
+_region{
+    arch:arch128;
+    _file:HOLA;
+    _function:HOLA;
+    _date:HOLA;
+    _time:ASD;
+    _uuid:ASD;
+    _arglist:pitin;
+    _makeref:hollaaa;
+    _reftype:asd;
+    _refvalue:poop;
+    _out:xdddd;
+    _in:a;
+    _box:false;
+    _unbox:true; 
+    _unboxany:false;
+    _is:false;
+    aes:aes128;
+}_endregio;
+
+
+_define{
+    _ifdef: arch == arch128;
+    _error: debug;
+    _include: convert;
+    _has_ocpp_attribute: true;
+    ascii:utf8;
+};
+
+.class NombreFuncion{
+  private hola->int;
+  
+  public .NombreFuncion none:{
+    hola->int;
+  }
+
+  public .funcionSecundaria none:{
+  
+for (iaa->int = 0; i < 10; i++) {
+    call .proceduralWhile;
+  }
+  }
+
+};
+
+.class test{};
+
+.main :{
+    hola->string;
+    hola1->string;
+    call .proceduralWhile;
+    hola3->string;
+    List<int> lista;
+    callback->var .myFunc(num1, num2);
+    if (num1 > num2) {
+        call .proceduralWhile;
+    }
+    switch(hola){
+        case "hola":
+            call .proceduralWhile;
+            break;
+    }
+    call .funcionSecundaria;
+}
+
+.funcionSecundaria none:{
+  do{
+    call .proceduralWhile;
+  }while(pendejada);
+  for (iaa->int = 0; i < 10; i++) {
+    call .proceduralWhile;
+  }
+
+}
+
+.funcDataPrint none:{
+    nombre->string;
+}
+
+//No Propias
+import hola;
+switch(hola){}
+case "hola":break;
+if (num1 > num2) {}
+do{}while(pendejada);
+for (int i = 0; i < 10; i++) {}
+while(funcion){}
+List<int> lista = new List<int>();
+//Propias
+.class 
+public .function
+call .proceduralWhile;
+.funcDataPrint none:
+hola->string;
+hola->string[5];
+callback->var .myFunc(num1, num2);
+.main
+_define{
+    _ifdef: arch == arch128;
+    _elif: none;
+    _error: debug;
+    _include: convert;
+    _has_ocpp_attribute: true;
+    ascii:utf;
+};
+_region{
+    arch:arch128;
+    _file:HOLA;
+    _function:HOLA;
+    _date:HOLA;
+    _time:ASD;
+    _uuid:ASD;
+    _arglist:pitin;
+    _makeref:hollaaa;
+    _reftype:asd;
+    _refvalue:poop;
+    _out:xdddd;
+    _in:a;
+    _box:false;
+    _unbox:true; 
+    _unboxany:false;
+    _is:false;
+    aes:aes128;
+}_endregio;
