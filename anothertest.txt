@@ -3,17 +3,20 @@ import hola; //ya
 .main :{
     hola->string; //ya
     hola1->string;
-    call .proceduralWhile;
+    call .funcionSecundaria;
     hola3->string;
-    List<int> lista; //falta
     callback->var .myFunc(num1, num2);
     if (num1 > num2) {
-        call .proceduralWhile;
+        call .funcionSecundaria;
     }
     switch(hola){
         case "hola":
-            call .proceduralWhile;
+            call .funcionSecundaria;
             break;
     }
     call .funcionSecundaria;
+}
+
+.funcionSecundaria none:{
+    nombre->string;
 }

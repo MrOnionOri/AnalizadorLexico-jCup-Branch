@@ -319,11 +319,11 @@ public class FrmPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnLimpiarSinActionPerformed
 
     private void btnAnalizarLexActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnalizarLexActionPerformed
-        /*try {
+        try {
             analizarLexico();
         } catch (IOException ex) {
             Logger.getLogger(FrmPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-        }*/
+        }
         /*cppTranslator test = new cppTranslator(txtResultado.getText());
         test.cppTranslate();
         txtAnalizarLex.setText(test.getSourceCode());*/

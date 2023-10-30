@@ -23,82 +23,128 @@ public class cppTranslator {
 
 
     private String reemplaceVarDelcaration(String temporal){
-        String pattern = "\\b[a-zA-Z_$][a-zA-Z_$0-9]*\\s*->\\s*(?:string|float|int|double|boolean)\\b;";
-        Pattern regex = Pattern.compile(pattern);
-        Matcher matcher = regex.matcher(temporal);
-        List<int[]> matchedIndices = new ArrayList<>();
+        try{
+            String pattern = "\\b[a-zA-Z_$][a-zA-Z_$0-9]*\\s*->\\s*(?:string|float|int|double|boolean)\\b;";
+            Pattern regex = Pattern.compile(pattern);
+            Matcher matcher = regex.matcher(temporal);
+            List<int[]> matchedIndices = new ArrayList<>();
+            
+            while (matcher.find()) {
+                int start = matcher.start();
+                int end = matcher.end();
+                matchedIndices.add(new int[]{start, end});
+            }
+            for (int[] index : matchedIndices) {
+                //System.out.println(sourceCode.substring(index[0], index[1]));
+                temporal = temporal.replace(sourceCode.substring(index[0], index[1]), descomponeVariables(sourceCode.substring(index[0], index[1])));
+            }
+        }catch(Exception e){
+            System.out.println("Error en reemplaceVarDelcaration");
+        }
         
-        while (matcher.find()) {
-            int start = matcher.start();
-            int end = matcher.end();
-            matchedIndices.add(new int[]{start, end});
-        }
-        for (int[] index : matchedIndices) {
-            //System.out.println(sourceCode.substring(index[0], index[1]));
-            temporal = temporal.replace(sourceCode.substring(index[0], index[1]), descomponeVariables(sourceCode.substring(index[0], index[1])));
-        }
         return temporal;
     }
 
     private String reemplaceImports(String temporal){
-        String pattern = "import\\s+([a-zA-Z_$][a-zA-Z_$0-9]*)\\s*;";
-        Pattern regex = Pattern.compile(pattern);
-        Matcher matcher = regex.matcher(temporal);
-        List<int[]> matchedIndices = new ArrayList<>();
+        try{
+            String pattern = "import\\s+([a-zA-Z_$][a-zA-Z_$0-9]*)\\s*;";
+            Pattern regex = Pattern.compile(pattern);
+            Matcher matcher = regex.matcher(temporal);
+            List<int[]> matchedIndices = new ArrayList<>();
+            
+            while (matcher.find()) {
+                int start = matcher.start();
+                int end = matcher.end();
+                matchedIndices.add(new int[]{start, end});
+            }
+            for (int[] index : matchedIndices) {
+                //System.out.println(sourceCode.substring(index[0], index[1]));
+                temporal = temporal.replace(sourceCode.substring(index[0], index[1]), descomponerImport(sourceCode.substring(index[0], index[1])));
+            } 
+        }catch(Exception e){
+            System.out.println("Error en reemplaceImports");
+        }
         
-        while (matcher.find()) {
-            int start = matcher.start();
-            int end = matcher.end();
-            matchedIndices.add(new int[]{start, end});
-        }
-        for (int[] index : matchedIndices) {
-            //System.out.println(sourceCode.substring(index[0], index[1]));
-            temporal = temporal.replace(sourceCode.substring(index[0], index[1]), descomponerImport(sourceCode.substring(index[0], index[1])));
-        }
         return temporal;
     }
 
     private String reemplaceCall(String temporal){
-        String pattern = "call\\s+\\.([a-zA-Z_$][a-zA-Z_$0-9]*)\\s*;";
-        Pattern regex = Pattern.compile(pattern);
-        Matcher matcher = regex.matcher(temporal);
-        List<int[]> matchedIndices = new ArrayList<>();
+        try{
+            String pattern = "call\\s+\\.([a-zA-Z_$][a-zA-Z_$0-9]*)\\s*;";
+            Pattern regex = Pattern.compile(pattern);
+            Matcher matcher = regex.matcher(temporal);
+            List<int[]> matchedIndices = new ArrayList<>();
+            
+            while (matcher.find()) {
+                int start = matcher.start();
+                int end = matcher.end();
+                matchedIndices.add(new int[]{start, end});
+            }
+            for (int[] index : matchedIndices) {
+                //System.out.println(sourceCode.substring(index[0], index[1]));
+                temporal = temporal.replace(sourceCode.substring(index[0], index[1]), descomponerCall(sourceCode.substring(index[0], index[1])));
+            }
+        }catch(Exception e){
+            System.out.println("Error en reemplaceCall");
+        }
         
-        while (matcher.find()) {
-            int start = matcher.start();
-            int end = matcher.end();
-            matchedIndices.add(new int[]{start, end});
+        return temporal;
+    }
+
+    private String reemplaceFunction(String temporal){
+        try{
+            String pattern = ".\\b[a-zA-Z_$][a-zA-Z_$0-9]*\\s* \\s*(?:none|string|float|int|double|boolean)\\b:";
+            Pattern regex = Pattern.compile(pattern);
+            Matcher matcher = regex.matcher(temporal);
+            List<int[]> matchedIndices = new ArrayList<>();
+            
+            while (matcher.find()) {
+                int start = matcher.start();
+                int end = matcher.end();
+                System.out.println(sourceCode.substring(start, end));
+                matchedIndices.add(new int[]{start, end});
+            }
+            for (int[] index : matchedIndices) {
+                System.out.println(sourceCode.substring(index[0], index[1]));
+                temporal = temporal.replace(sourceCode.substring(index[0], index[1]), descomponerFunction(sourceCode.substring(index[0], index[1])));
+            }
+        }catch(Exception e){
+            System.out.println(e.toString());
         }
-        for (int[] index : matchedIndices) {
-            //System.out.println(sourceCode.substring(index[0], index[1]));
-            temporal = temporal.replace(sourceCode.substring(index[0], index[1]), descomponerCall(sourceCode.substring(index[0], index[1])));
-        }
+        
         return temporal;
     }
 
     private String reemplaceCallBack(String temporal){
-        String pattern = "callback->([a-zA-Z_$][a-zA-Z_$0-9]*)\\s\\.([a-zA-Z_$][a-zA-Z_$0-9]*)\\(([^)]*)\\);";
-        Pattern regex = Pattern.compile(pattern);
-        Matcher matcher = regex.matcher(temporal);
-        List<int[]> matchedIndices = new ArrayList<>();
-        
-        while (matcher.find()) {
-            int start = matcher.start();
-            int end = matcher.end();
-            System.out.println(sourceCode.substring(start, end));
-            matchedIndices.add(new int[]{start, end});
-        }
-        for (int[] index : matchedIndices) {
-            System.out.println(sourceCode.substring(index[0], index[1]));
-            temporal = temporal.replace(sourceCode.substring(index[0], index[1]), descomponerCallBack(sourceCode.substring(index[0], index[1])));
+        try{
+            String pattern = "callback->([a-zA-Z_$][a-zA-Z_$0-9]*)\\s\\.([a-zA-Z_$][a-zA-Z_$0-9]*)\\(([^)]*)\\);";
+            Pattern regex = Pattern.compile(pattern);
+            Matcher matcher = regex.matcher(temporal);
+            List<int[]> matchedIndices = new ArrayList<>();
+            
+            while (matcher.find()) {
+                int start = matcher.start();
+                int end = matcher.end();
+                
+                matchedIndices.add(new int[]{start, end});
+                System.out.println(start + " " + end);
+            }
+            for (int[] index : matchedIndices) {
+                System.out.println(sourceCode.substring(index[0], index[1]));
+                temporal = temporal.replace(sourceCode.substring(index[0], index[1]), descomponerCallBack(sourceCode.substring(index[0], index[1])));
+            }
+        }catch(Exception e){
+            System.out.println(e.toString());
         }
         return temporal;
     }
 
-    
+    private String descomponerFunction(String codeLine){
+        return (codeLine.substring(codeLine.indexOf(" ") + 1, codeLine.indexOf(":")) + " " + codeLine.substring(codeLine.indexOf(".")+1, codeLine.indexOf(" ")) + "()").replace("none", "void");
+    }    
 
     private String changeMain(String temporal){
-        return temporal.replace(".main :", "int main");
+        return temporal.replace(".main :", "int main()");
     }
 
 
@@ -125,6 +171,7 @@ public class cppTranslator {
         sourceCode = reemplaceCall(sourceCode);
         sourceCode = reemplaceCallBack(sourceCode);
         sourceCode = changeMain(sourceCode);
+        sourceCode = reemplaceFunction(sourceCode);
     }
 
 
